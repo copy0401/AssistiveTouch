@@ -12,6 +12,7 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.res.Configuration;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.PixelFormat;
@@ -216,6 +217,7 @@ public class AssistiveTouchService extends AccessibilityService {
     }
 
     private void setAssistiveTouchViewAlign() {
+        calculateForMyPhone();
         int mAssistiveTouchViewWidth = mAssistiveTouchView.getMeasuredWidth();
         int mAssistiveTouchViewHeight = mAssistiveTouchView.getMeasuredHeight();
         int top = mParams.y + mAssistiveTouchViewWidth / 2;
@@ -231,6 +233,29 @@ public class AssistiveTouchService extends AccessibilityService {
         if (min == left) mParams.x = 0;
         if (min == right) mParams.x = mScreenWidth - mAssistiveTouchViewWidth;
         if (min == bottom) mParams.y = mScreenHeight - mAssistiveTouchViewHeight;
+        myAssistiveTouchAnimator(lastAssistiveTouchViewX, mParams.x, lastAssistiveTouchViewY, mParams.y, false).start();
+    }
+
+    @Override
+    public void onConfigurationChanged(Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
+        calculateForMyPhone();
+        if (newConfig.orientation == Configuration.ORIENTATION_LANDSCAPE) {
+            alignToRightEdge();
+        } else {
+            setAssistiveTouchViewAlign();
+        }
+    }
+
+    private void alignToRightEdge() {
+        int mAssistiveTouchViewWidth = mAssistiveTouchView.getMeasuredWidth();
+        int mAssistiveTouchViewHeight = mAssistiveTouchView.getMeasuredHeight();
+        lastAssistiveTouchViewX = mParams.x;
+        lastAssistiveTouchViewY = mParams.y;
+        mParams.x = mScreenWidth - mAssistiveTouchViewWidth;
+        if (mParams.y + mAssistiveTouchViewHeight > mScreenHeight) {
+            mParams.y = Math.max(0, mScreenHeight - mAssistiveTouchViewHeight);
+        }
         myAssistiveTouchAnimator(lastAssistiveTouchViewX, mParams.x, lastAssistiveTouchViewY, mParams.y, false).start();
     }
 

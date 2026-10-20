@@ -24,8 +24,17 @@ public class SystemsUtils {
 
     public static DisplayMetrics getScreenSize(Context context) {
         DisplayMetrics displayMetrics = new DisplayMetrics();
-        WindowManager mWindowManager = (WindowManager) context.getSystemService(context.WINDOW_SERVICE);
-        mWindowManager.getDefaultDisplay().getMetrics(displayMetrics);
+        WindowManager mWindowManager = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
+        if (mWindowManager != null) {
+            if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.R) {
+                android.graphics.Rect bounds = mWindowManager.getCurrentWindowMetrics().getBounds();
+                displayMetrics.widthPixels = bounds.width();
+                displayMetrics.heightPixels = bounds.height();
+                displayMetrics.densityDpi = context.getResources().getDisplayMetrics().densityDpi;
+            } else {
+                mWindowManager.getDefaultDisplay().getMetrics(displayMetrics);
+            }
+        }
         return displayMetrics;
     }
 
