@@ -58,7 +58,7 @@ public class MainActivity extends Activity {
         super.onStart();
         if (SystemsUtils.isAccessibilityServiceEnabled(getApplicationContext(), AssistiveTouchService.class)){
             finish();
-        };
+        }
     }
 
     @Override

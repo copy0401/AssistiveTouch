@@ -2,7 +2,6 @@
 
 ## Features
 
-* Single click: go back
-* Double click: go Home
-* Long click: refresh screen (on Pubook)
-* Support drag icon around
+* 單擊 GLOBAL_ACTION_RECENTS
+* 長壓 GLOBAL_ACTION_BACK
+* 雙擊 GLOBAL_ACTION_HOME

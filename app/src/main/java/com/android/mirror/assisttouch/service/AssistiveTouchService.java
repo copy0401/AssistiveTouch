@@ -91,6 +91,28 @@ public class AssistiveTouchService extends AccessibilityService {
         mStatusBarHeight = SystemsUtils.getStatusBarHeight(this);
     }
 
+
+//按下返回键
+//accessibilityService.performGlobalAction(GLOBAL_ACTION_BACK)
+//向下拉出状态栏
+//accessibilityService.performGlobalAction(GLOBAL_ACTION_NOTIFICATIONS)
+//向下拉出状态栏并显示出所有的快捷操作按钮
+//accessibilityService.performGlobalAction(GLOBAL_ACTION_QUICK_SETTINGS)
+//按下HOME键
+//accessibilityService.performGlobalAction(GLOBAL_ACTION_HOME)
+//显示最近任务
+//accessibilityService.performGlobalAction(GLOBAL_ACTION_RECENTS)
+//长按电源键
+//accessibilityService.performGlobalAction(GLOBAL_ACTION_POWER_DIALOG)
+//分屏
+//accessibilityService.performGlobalAction(GLOBAL_ACTION_TOGGLE_SPLIT_SCREEN)
+//锁屏(安卓9.0适用)
+//accessibilityService.performGlobalAction(GLOBAL_ACTION_LOCK_SCREEN)
+//截屏(安卓9.0适用)
+//accessibilityService.performGlobalAction(GLOBAL_ACTION_TAKE_SCREENSHOT)
+//打开快速设置
+//accessibilityService.performGlobalAction(GLOBAL_ACTION_QUICK_SETTINGS)
+
     @SuppressLint("ClickableViewAccessibility")
     public void createAssistiveTouchView() {
         mParams.type = WindowManager.LayoutParams.TYPE_APPLICATION_OVERLAY;
@@ -104,25 +126,31 @@ public class AssistiveTouchService extends AccessibilityService {
         mWindowManager.addView(mAssistiveTouchView, mParams);
         mAssistiveTouchView.setOnTouchListener(new View.OnTouchListener() {
             private GestureDetector gestureDetector = new GestureDetector(AssistiveTouchService.this.getBaseContext(), new GestureDetector.SimpleOnGestureListener() {
+                
+                // 長壓 back
                 @Override
                 public void onLongPress(MotionEvent e) {
                     if (isMoving) return;
                     try {
-                        Class<?> cls = Class.forName("android.os.EinkManager");
-                        Method method = cls.getMethod("sendOneFullFrame");
-                        Object einkManager = AssistiveTouchService.this.getSystemService("eink");
-                        method.invoke(einkManager);
+//                        Class<?> cls = Class.forName("android.os.EinkManager");
+//                        Method method = cls.getMethod("sendOneFullFrame");
+//                        Object einkManager = AssistiveTouchService.this.getSystemService("eink");
+//                        method.invoke(einkManager);
+                        performGlobalAction(AssistiveTouchService.GLOBAL_ACTION_BACK);
+
                     } catch (Exception ignored) {
                     }
                     super.onLongPress(e);
                 }
-
+                
+                // 單擊 切換app
                 @Override
-                public boolean onSingleTapConfirmed(MotionEvent e) {
-                    performGlobalAction(AssistiveTouchService.GLOBAL_ACTION_BACK);
+                public boolean onSingleTapConfirmed(MotionEvent e) { 
+                    performGlobalAction(AssistiveTouchService.GLOBAL_ACTION_RECENTS);
                     return true;
                 }
-
+                
+                // 雙擊 home
                 @Override
                 public boolean onDoubleTap(MotionEvent e) {
                     performGlobalAction(AssistiveTouchService.GLOBAL_ACTION_HOME);
@@ -226,6 +254,10 @@ public class AssistiveTouchService extends AccessibilityService {
     protected void onServiceConnected() {
         super.onServiceConnected();
         IntentFilter filter = new IntentFilter("info.plateaukao.action.DISABLE_SERVICE");
-        registerReceiver(receiver, filter);
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.TIRAMISU) {
+            registerReceiver(receiver, filter, Context.RECEIVER_EXPORTED);
+        } else {
+            registerReceiver(receiver, filter);
+        }
     }
 }
