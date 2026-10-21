@@ -34,6 +34,11 @@ jobs:
       with:
         name: AssistiveTouch-apk
         path: app/build/outputs/apk/debug/AssistiveTouch.apk
-
-
+        
+    - name: Upload APK to GitHub Release
+      uses: softprops/action-gh-release@v2
+      with:
+        files: app/build/outputs/apk/debug/AssistiveTouch.apk
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
   
