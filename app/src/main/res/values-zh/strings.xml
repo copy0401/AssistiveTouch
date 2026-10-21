@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">AssistTouch</string>
+    <string name="accessibility_service_description">Assistive Touch 懸浮球服務</string>
+
+    <string name="app_title">Assistive Touch 懸浮球設定</string>
+    <string name="gesture_section_title">懸浮球手勢控制</string>
+    <string name="single_tap_title">點擊 (Single Tap) 觸發效果</string>
+    <string name="long_press_title">長按 (Long Press) 觸發效果</string>
+    <string name="double_tap_title">雙擊 (Double Tap) 觸發效果</string>
+
+    <string name="status_permission_title">服務狀態與權限</string>
+    <string name="overlay_status_enabled">懸浮窗權限：已開啟 (已授權)</string>
+    <string name="overlay_status_disabled">懸浮窗權限：未開啟 (需要授權)</string>
+    <string name="btn_overlay_enabled">懸浮窗權限已啟用</string>
+    <string name="btn_overlay_grant">開啟懸浮窗權限</string>
+
+    <string name="accessibility_status_enabled">無障礙服務：已啟用 (懸浮球運行中)</string>
+    <string name="accessibility_status_disabled">無障礙服務：未啟用 (懸浮球無法顯示)</string>
+    <string name="btn_accessibility_settings">開啟無障礙服務設定</string>
+
+    <string name="btn_create_shortcut">建立桌面捷徑</string>
+    <string name="toast_shortcut_requested">已送出建立桌面捷徑請求</string>
+
+    <string name="keep_alive_title">後台保活與保持運行</string>
+    <string name="battery_status_enabled">電池最佳化：已忽略 (防止後台被清除)</string>
+    <string name="battery_status_disabled">電池最佳化：受限制 (可能被系統後台殺掉)</string>
+    <string name="btn_battery_enabled">已允許背景高優先級運行</string>
+    <string name="btn_battery_grant">忽略電池最佳化 (推薦開啟)</string>
+    <string name="keep_alive_tip">提示：開啟「無障礙服務」與「忽略電池最佳化」後，系統會將本服務保持在後台高優先級運行，防止清理記憶體時被關閉。</string>
+
+    <string name="ongoing_notification_title">顯示常駐通知</string>
+    <string name="ongoing_notification_desc">在通知欄顯示常駐通知，提升後台優先級以防止被系統清理。</string>
+
+    <string name="toast_overlay_error">無法開啟懸浮窗設定</string>
+    <string name="toast_accessibility_error">無法開啟無障礙服務設定</string>
+    <string name="toast_battery_error">無法開啟電池最佳化設定</string>
+
+    <!-- Actions -->
+    <string name="action_recents">最近任務 (GLOBAL_ACTION_RECENTS)</string>
+    <string name="action_back">返回鍵 (GLOBAL_ACTION_BACK)</string>
+    <string name="action_home">首頁 (GLOBAL_ACTION_HOME)</string>
+    <string name="action_notifications">下拉通知欄 (GLOBAL_ACTION_NOTIFICATIONS)</string>
+    <string name="action_quick_settings">快捷設定 (GLOBAL_ACTION_QUICK_SETTINGS)</string>
+    <string name="action_power_dialog">電源選單 (GLOBAL_ACTION_POWER_DIALOG)</string>
+    <string name="action_toggle_split_screen">切換分屏 (GLOBAL_ACTION_TOGGLE_SPLIT_SCREEN)</string>
+    <string name="action_take_screenshot">螢幕截圖 (GLOBAL_ACTION_TAKE_SCREENSHOT)</string>
+    <string name="action_lock_screen">鎖定螢幕 (GLOBAL_ACTION_LOCK_SCREEN)</string>
+    <string name="action_dismiss_notification_shade">關閉通知欄 (GLOBAL_ACTION_DISMISS_NOTIFICATION_SHADE)</string>
+    <string name="action_none">無動作 (None)</string>
+</resources>

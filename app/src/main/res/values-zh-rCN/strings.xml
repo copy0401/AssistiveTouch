@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">AssistTouch</string>
+    <string name="accessibility_service_description">Assistive Touch 悬浮球服务</string>
+
+    <string name="app_title">Assistive Touch 悬浮球设置</string>
+    <string name="gesture_section_title">悬浮球手势控制</string>
+    <string name="single_tap_title">单击 (Single Tap) 触发效果</string>
+    <string name="long_press_title">长按 (Long Press) 触发效果</string>
+    <string name="double_tap_title">双击 (Double Tap) 触发效果</string>
+
+    <string name="status_permission_title">服务状态与权限</string>
+    <string name="overlay_status_enabled">悬浮窗权限：已开启 (已授权)</string>
+    <string name="overlay_status_disabled">悬浮窗权限：未开启 (需要授权)</string>
+    <string name="btn_overlay_enabled">悬浮窗权限已启用</string>
+    <string name="btn_overlay_grant">开启悬浮窗权限</string>
+
+    <string name="accessibility_status_enabled">无障碍服务：已启用 (悬浮球运行中)</string>
+    <string name="accessibility_status_disabled">无障碍服务：未启用 (悬浮球无法显示)</string>
+    <string name="btn_accessibility_settings">开启无障碍服务设置</string>
+
+    <string name="btn_create_shortcut">创建桌面快捷方式</string>
+    <string name="toast_shortcut_requested">已发送创建桌面快捷方式请求</string>
+
+    <string name="keep_alive_title">后台保活与保持运行</string>
+    <string name="battery_status_enabled">电池优化：已忽略 (防止后台被清除)</string>
+    <string name="battery_status_disabled">电池优化：受限制 (可能被系统后台杀掉)</string>
+    <string name="btn_battery_enabled">已允许后台高优先级运行</string>
+    <string name="btn_battery_grant">忽略电池优化 (推荐开启)</string>
+    <string name="keep_alive_tip">提示：开启“无障碍服务”与“忽略电池优化”后，系统会将本服务保持在后台高优先级运行，防止清理内存时被关闭。</string>
+
+    <string name="ongoing_notification_title">显示常驻通知</string>
+    <string name="ongoing_notification_desc">在通知栏显示常驻通知，提升后台优先级以防止被系统清理。</string>
+
+    <string name="toast_overlay_error">无法开启悬浮窗设置</string>
+    <string name="toast_accessibility_error">无法开启无障碍服务设置</string>
+    <string name="toast_battery_error">无法开启电池优化设置</string>
+
+    <!-- Actions -->
+    <string name="action_recents">最近任务 (GLOBAL_ACTION_RECENTS)</string>
+    <string name="action_back">返回键 (GLOBAL_ACTION_BACK)</string>
+    <string name="action_home">主页 (GLOBAL_ACTION_HOME)</string>
+    <string name="action_notifications">下拉通知栏 (GLOBAL_ACTION_NOTIFICATIONS)</string>
+    <string name="action_quick_settings">快捷设置 (GLOBAL_ACTION_QUICK_SETTINGS)</string>
+    <string name="action_power_dialog">电源菜单 (GLOBAL_ACTION_POWER_DIALOG)</string>
+    <string name="action_toggle_split_screen">分屏切换 (GLOBAL_ACTION_TOGGLE_SPLIT_SCREEN)</string>
+    <string name="action_take_screenshot">屏幕截图 (GLOBAL_ACTION_TAKE_SCREENSHOT)</string>
+    <string name="action_lock_screen">锁定屏幕 (GLOBAL_ACTION_LOCK_SCREEN)</string>
+    <string name="action_dismiss_notification_shade">关闭通知栏 (GLOBAL_ACTION_DISMISS_NOTIFICATION_SHADE)</string>
+    <string name="action_none">无动作 (None)</string>
+</resources>

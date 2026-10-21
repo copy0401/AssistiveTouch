@@ -29,12 +29,16 @@ import android.widget.PopupWindow;
 
 import com.android.mirror.assisttouch.R;
 import com.android.mirror.assisttouch.utils.SystemsUtils;
+import com.android.mirror.assisttouch.utils.TouchActionManager;
+import com.android.mirror.assisttouch.utils.SystemsUtils;
 
 import java.lang.reflect.Method;
 import java.util.Timer;
 import java.util.TimerTask;
 
 public class AssistiveTouchService extends AccessibilityService {
+
+    public static final String ACTION_UPDATE_NOTIFICATION = "com.android.mirror.assisttouch.ACTION_UPDATE_NOTIFICATION";
 
     private boolean isMoving;
 
@@ -59,11 +63,66 @@ public class AssistiveTouchService extends AccessibilityService {
         init();
         calculateForMyPhone();
         createAssistiveTouchView();
+        updateNotificationState();
     }
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-        return super.onStartCommand(intent, flags, startId);
+        updateNotificationState();
+        return START_STICKY;
+    }
+
+    private void updateNotificationState() {
+        boolean enabled = TouchActionManager.isOngoingNotificationEnabled(this);
+        if (enabled) {
+            startForegroundServiceNotification();
+        } else {
+            if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N) {
+                stopForeground(STOP_FOREGROUND_REMOVE);
+            } else {
+                stopForeground(true);
+            }
+        }
+    }
+
+    private void startForegroundServiceNotification() {
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+            String channelId = "assistive_touch_channel";
+            android.app.NotificationChannel channel = new android.app.NotificationChannel(
+                    channelId,
+                    "AssistiveTouch 懸浮球服務",
+                    android.app.NotificationManager.IMPORTANCE_LOW
+            );
+            android.app.NotificationManager manager = getSystemService(android.app.NotificationManager.class);
+            if (manager != null) {
+                manager.createNotificationChannel(channel);
+            }
+
+            android.app.Notification notification = new android.app.Notification.Builder(this, channelId)
+                    .setContentTitle("AssistiveTouch 懸浮球運行中")
+                    .setContentText("保持懸浮球後台穩定運行")
+                    .setSmallIcon(R.mipmap.ic_launcher)
+                    .setOngoing(true)
+                    .build();
+
+            try {
+                if (android.os.Build.VERSION.SDK_INT >= 34) {
+                    startForeground(1001, notification, android.content.pm.ServiceInfo.FOREGROUND_SERVICE_TYPE_SPECIAL_USE);
+                } else {
+                    startForeground(1001, notification);
+                }
+            } catch (Exception e) {
+                try {
+                    startForeground(1001, notification);
+                } catch (Exception ignored) {}
+            }
+        }
+    }
+
+    private void executeAction(int action) {
+        if (action > 0) {
+            performGlobalAction(action);
+        }
     }
 
     @Override
@@ -92,28 +151,6 @@ public class AssistiveTouchService extends AccessibilityService {
         mStatusBarHeight = SystemsUtils.getStatusBarHeight(this);
     }
 
-
-//按下返回键
-//accessibilityService.performGlobalAction(GLOBAL_ACTION_BACK)
-//向下拉出状态栏
-//accessibilityService.performGlobalAction(GLOBAL_ACTION_NOTIFICATIONS)
-//向下拉出状态栏并显示出所有的快捷操作按钮
-//accessibilityService.performGlobalAction(GLOBAL_ACTION_QUICK_SETTINGS)
-//按下HOME键
-//accessibilityService.performGlobalAction(GLOBAL_ACTION_HOME)
-//显示最近任务
-//accessibilityService.performGlobalAction(GLOBAL_ACTION_RECENTS)
-//长按电源键
-//accessibilityService.performGlobalAction(GLOBAL_ACTION_POWER_DIALOG)
-//分屏
-//accessibilityService.performGlobalAction(GLOBAL_ACTION_TOGGLE_SPLIT_SCREEN)
-//锁屏(安卓9.0适用)
-//accessibilityService.performGlobalAction(GLOBAL_ACTION_LOCK_SCREEN)
-//截屏(安卓9.0适用)
-//accessibilityService.performGlobalAction(GLOBAL_ACTION_TAKE_SCREENSHOT)
-//打开快速设置
-//accessibilityService.performGlobalAction(GLOBAL_ACTION_QUICK_SETTINGS)
-
     @SuppressLint("ClickableViewAccessibility")
     public void createAssistiveTouchView() {
         mParams.type = WindowManager.LayoutParams.TYPE_APPLICATION_OVERLAY;
@@ -128,33 +165,36 @@ public class AssistiveTouchService extends AccessibilityService {
         mAssistiveTouchView.setOnTouchListener(new View.OnTouchListener() {
             private GestureDetector gestureDetector = new GestureDetector(AssistiveTouchService.this.getBaseContext(), new GestureDetector.SimpleOnGestureListener() {
                 
-                // 長壓 back
+                // 長壓
                 @Override
                 public void onLongPress(MotionEvent e) {
                     if (isMoving) return;
-                    try {
-//                        Class<?> cls = Class.forName("android.os.EinkManager");
-//                        Method method = cls.getMethod("sendOneFullFrame");
-//                        Object einkManager = AssistiveTouchService.this.getSystemService("eink");
-//                        method.invoke(einkManager);
-                        performGlobalAction(AssistiveTouchService.GLOBAL_ACTION_BACK);
-
-                    } catch (Exception ignored) {
-                    }
+                    int action = TouchActionManager.getAction(getApplicationContext(),
+                            TouchActionManager.KEY_LONG_PRESS,
+                            AccessibilityService.GLOBAL_ACTION_BACK);
+                    executeAction(action);
                     super.onLongPress(e);
                 }
                 
-                // 單擊 切換app
+                // 單擊
                 @Override
                 public boolean onSingleTapConfirmed(MotionEvent e) { 
-                    performGlobalAction(AssistiveTouchService.GLOBAL_ACTION_RECENTS);
+                    if (isMoving) return false;
+                    int action = TouchActionManager.getAction(getApplicationContext(),
+                            TouchActionManager.KEY_SINGLE_TAP,
+                            AccessibilityService.GLOBAL_ACTION_RECENTS);
+                    executeAction(action);
                     return true;
                 }
                 
-                // 雙擊 home
+                // 雙擊
                 @Override
                 public boolean onDoubleTap(MotionEvent e) {
-                    performGlobalAction(AssistiveTouchService.GLOBAL_ACTION_HOME);
+                    if (isMoving) return false;
+                    int action = TouchActionManager.getAction(getApplicationContext(),
+                            TouchActionManager.KEY_DOUBLE_TAP,
+                            AccessibilityService.GLOBAL_ACTION_HOME);
+                    executeAction(action);
                     return true;
                 }
             });
@@ -275,6 +315,7 @@ public class AssistiveTouchService extends AccessibilityService {
         }
     };
 
+    @SuppressLint("UnspecifiedRegisterReceiverFlag")
     @Override
     protected void onServiceConnected() {
         super.onServiceConnected();

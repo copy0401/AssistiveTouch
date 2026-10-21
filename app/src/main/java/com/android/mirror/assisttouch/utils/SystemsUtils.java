@@ -75,4 +75,35 @@ public class SystemsUtils {
         return false;
     }
 
+    public static void createHomeScreenShortcut(Context context) {
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+            android.content.pm.ShortcutManager shortcutManager = context.getSystemService(android.content.pm.ShortcutManager.class);
+            if (shortcutManager != null && shortcutManager.isRequestPinShortcutSupported()) {
+                Intent pinShortcutIntent = new Intent(context, com.android.mirror.assisttouch.main.MainActivity.class);
+                pinShortcutIntent.setAction(Intent.ACTION_MAIN);
+
+                android.content.pm.ShortcutInfo pinShortcutInfo = new android.content.pm.ShortcutInfo.Builder(context, "assistive_touch_pin_shortcut")
+                        .setShortLabel(context.getString(com.android.mirror.assisttouch.R.string.app_name))
+                        .setLongLabel(context.getString(com.android.mirror.assisttouch.R.string.app_title))
+                        .setIcon(android.graphics.drawable.Icon.createWithResource(context, com.android.mirror.assisttouch.R.mipmap.ic_launcher))
+                        .setIntent(pinShortcutIntent)
+                        .build();
+
+                shortcutManager.requestPinShortcut(pinShortcutInfo, null);
+            }
+        } else {
+            Intent shortcutIntent = new Intent(context.getApplicationContext(), com.android.mirror.assisttouch.main.MainActivity.class);
+            shortcutIntent.setAction(Intent.ACTION_MAIN);
+
+            Intent addIntent = new Intent();
+            addIntent.putExtra(Intent.EXTRA_SHORTCUT_INTENT, shortcutIntent);
+            addIntent.putExtra(Intent.EXTRA_SHORTCUT_NAME, context.getString(com.android.mirror.assisttouch.R.string.app_name));
+            addIntent.putExtra(Intent.EXTRA_SHORTCUT_ICON_RESOURCE,
+                    Intent.ShortcutIconResource.fromContext(context.getApplicationContext(), com.android.mirror.assisttouch.R.mipmap.ic_launcher));
+            addIntent.setAction("com.android.launcher.action.INSTALL_SHORTCUT");
+            addIntent.putExtra("duplicate", false);
+            context.sendBroadcast(addIntent);
+        }
+    }
+
 }

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">AssistTouch</string>
+    <string name="accessibility_service_description">Assistive Touch 서비스</string>
+
+    <string name="app_title">Assistive Touch 플로팅 버튼 설정</string>
+    <string name="gesture_section_title">제스처 제어</string>
+    <string name="single_tap_title">한 번 탭 (Single Tap) 동작</string>
+    <string name="long_press_title">길게 누르기 (Long Press) 동작</string>
+    <string name="double_tap_title">두 번 탭 (Double Tap) 동작</string>
+
+    <string name="status_permission_title">서비스 상태 및 권한</string>
+    <string name="overlay_status_enabled">다른 앱 위에 표시 권한: 활성화됨</string>
+    <string name="overlay_status_disabled">다른 앱 위에 표시 권한: 비활성화됨</string>
+    <string name="btn_overlay_enabled">권한 활성화됨</string>
+    <string name="btn_overlay_grant">다른 앱 위에 표시 권한 허용</string>
+
+    <string name="accessibility_status_enabled">접근성 서비스: 활성화됨 (실행 중)</string>
+    <string name="accessibility_status_disabled">접근성 서비스: 비활성화됨</string>
+    <string name="btn_accessibility_settings">접근성 설정 열기</string>
+
+    <string name="btn_create_shortcut">홈 화면에 바로가기 추가</string>
+    <string name="toast_shortcut_requested">홈 화면 바로가기 추가 요청을 보냈습니다</string>
+
+    <string name="keep_alive_title">백그라운드 유지 설정</string>
+    <string name="battery_status_enabled">배터리 최적화: 제외됨</string>
+    <string name="battery_status_disabled">배터리 최적화: 제한됨</string>
+    <string name="btn_battery_enabled">백그라운드 우선 실행 허용됨</string>
+    <string name="btn_battery_grant">배터리 최적화 제외 (권장)</string>
+    <string name="keep_alive_tip">팁: "접근성 서비스"를 활성화하고 "배터리 최적화 제외"를 허용하면 메모리 정리 시 앱이 종료되는 것을 방지할 수 있습니다.</string>
+
+    <string name="ongoing_notification_title">상주 알림 표시</string>
+    <string name="ongoing_notification_desc">알림창에 상주 알림을 표시하여 백그라운드 종료를 방지합니다.</string>
+
+    <string name="toast_overlay_error">다른 앱 위에 표시 설정을 열 수 없습니다.</string>
+    <string name="toast_accessibility_error">접근성 설정을 열 수 없습니다.</string>
+    <string name="toast_battery_error">배터리 최적화 설정을 열 수 없습니다.</string>
+
+    <!-- Actions -->
+    <string name="action_recents">최근 앱 (GLOBAL_ACTION_RECENTS)</string>
+    <string name="action_back">뒤로 가기 (GLOBAL_ACTION_BACK)</string>
+    <string name="action_home">홈 (GLOBAL_ACTION_HOME)</string>
+    <string name="action_notifications">알림창 (GLOBAL_ACTION_NOTIFICATIONS)</string>
+    <string name="action_quick_settings">빠른 설정 (GLOBAL_ACTION_QUICK_SETTINGS)</string>
+    <string name="action_power_dialog">전원 메뉴 (GLOBAL_ACTION_POWER_DIALOG)</string>
+    <string name="action_toggle_split_screen">분할 화면 (GLOBAL_ACTION_TOGGLE_SPLIT_SCREEN)</string>
+    <string name="action_take_screenshot">화면 캡처 (GLOBAL_ACTION_TAKE_SCREENSHOT)</string>
+    <string name="action_lock_screen">화면 잠금 (GLOBAL_ACTION_LOCK_SCREEN)</string>
+    <string name="action_dismiss_notification_shade">알림창 닫기 (GLOBAL_ACTION_DISMISS_NOTIFICATION_SHADE)</string>
+    <string name="action_none">동작 없음 (None)</string>
+</resources>

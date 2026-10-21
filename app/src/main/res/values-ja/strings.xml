@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">AssistTouch</string>
+    <string name="accessibility_service_description">Assistive Touch サービス</string>
+
+    <string name="app_title">Assistive Touch 設定</string>
+    <string name="gesture_section_title">ジェスチャー制御</string>
+    <string name="single_tap_title">シングルタップ (Single Tap)</string>
+    <string name="long_press_title">長押し (Long Press)</string>
+    <string name="double_tap_title">ダブルタップ (Double Tap)</string>
+
+    <string name="status_permission_title">サービスステータスと権限</string>
+    <string name="overlay_status_enabled">オーバーレイ権限：有効 (許可済み)</string>
+    <string name="overlay_status_disabled">オーバーレイ権限：無効 (許可が必要)</string>
+    <string name="btn_overlay_enabled">オーバーレイ権限有効</string>
+    <string name="btn_overlay_grant">オーバーレイ権限を許可</string>
+
+    <string name="accessibility_status_enabled">ユーザー補助サービス：有効 (実行中)</string>
+    <string name="accessibility_status_disabled">ユーザー補助サービス：無効</string>
+    <string name="btn_accessibility_settings">ユーザー補助設定を開く</string>
+
+    <string name="btn_create_shortcut">ホーム画面にショートカットを作成</string>
+    <string name="toast_shortcut_requested">ショートカット作成リクエストを送信しました</string>
+
+    <string name="keep_alive_title">バックグラウンド保持設定</string>
+    <string name="battery_status_enabled">バッテリー最適化：無視に設定済み</string>
+    <string name="battery_status_disabled">バッテリー最適化：制限あり</string>
+    <string name="btn_battery_enabled">高優先度バックグラウンド実行を許可済み</string>
+    <string name="btn_battery_grant">バッテリー最適化を無効化 (推奨)</string>
+    <string name="keep_alive_tip">ヒント：「ユーザー補助」を有効にし、「バッテリー最適化を無視」設定を行うことで、システムメモリ解放時にアプリが強制終了されるのを防ぎます。</string>
+
+    <string name="ongoing_notification_title">常駐通知を表示</string>
+    <string name="ongoing_notification_desc">通知バーに常駐通知を表示し、バックグラウンドでの強制終了を防ぎます。</string>
+
+    <string name="toast_overlay_error">オーバーレイ設定を開けません</string>
+    <string name="toast_accessibility_error">ユーザー補助設定を開けません</string>
+    <string name="toast_battery_error">バッテリー最適化設定を開けません</string>
+
+    <!-- Actions -->
+    <string name="action_recents">最近のアプリ (GLOBAL_ACTION_RECENTS)</string>
+    <string name="action_back">戻る (GLOBAL_ACTION_BACK)</string>
+    <string name="action_home">ホーム (GLOBAL_ACTION_HOME)</string>
+    <string name="action_notifications">通知シェード (GLOBAL_ACTION_NOTIFICATIONS)</string>
+    <string name="action_quick_settings">クイック設定 (GLOBAL_ACTION_QUICK_SETTINGS)</string>
+    <string name="action_power_dialog">電源メニュー (GLOBAL_ACTION_POWER_DIALOG)</string>
+    <string name="action_toggle_split_screen">画面分割 (GLOBAL_ACTION_TOGGLE_SPLIT_SCREEN)</string>
+    <string name="action_take_screenshot">スクリーンショット (GLOBAL_ACTION_TAKE_SCREENSHOT)</string>
+    <string name="action_lock_screen">画面ロック (GLOBAL_ACTION_LOCK_SCREEN)</string>
+    <string name="action_dismiss_notification_shade">通知を閉じる (GLOBAL_ACTION_DISMISS_NOTIFICATION_SHADE)</string>
+    <string name="action_none">なし (None)</string>
+</resources>

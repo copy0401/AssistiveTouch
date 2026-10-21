@@ -1,7 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">AssistTouch</string>
+    <string name="accessibility_service_description">Assistive Touch Floating Button Service</string>
 
-    <string name="hello_world">Hello world!</string>
-    <string name="action_settings">Settings</string>
-    <string name="accessibility_service_description">description</string>
+    <string name="app_title">Assistive Touch Settings</string>
+    <string name="gesture_section_title">Gesture Controls</string>
+    <string name="single_tap_title">Single Tap Action</string>
+    <string name="long_press_title">Long Press Action</string>
+    <string name="double_tap_title">Double Tap Action</string>
+
+    <string name="status_permission_title">Service Status &amp; Permissions</string>
+    <string name="overlay_status_enabled">Overlay Permission: Enabled</string>
+    <string name="overlay_status_disabled">Overlay Permission: Disabled</string>
+    <string name="btn_overlay_enabled">Overlay Permission Enabled</string>
+    <string name="btn_overlay_grant">Grant Overlay Permission</string>
+
+    <string name="accessibility_status_enabled">Accessibility Service: Enabled (Running)</string>
+    <string name="accessibility_status_disabled">Accessibility Service: Disabled</string>
+    <string name="btn_accessibility_settings">Open Accessibility Settings</string>
+
+    <string name="btn_create_shortcut">Add Shortcut to Home Screen</string>
+    <string name="toast_shortcut_requested">Home screen shortcut requested</string>
+
+    <string name="keep_alive_title">Background Keep-Alive</string>
+    <string name="battery_status_enabled">Battery Optimization: Ignored</string>
+    <string name="battery_status_disabled">Battery Optimization: Restricted</string>
+    <string name="btn_battery_enabled">Background Priority Allowed</string>
+    <string name="btn_battery_grant">Ignore Battery Optimization</string>
+    <string name="keep_alive_tip">Tip: Enabling Accessibility Service and ignoring battery optimization allows the app to run continuously in the background without being killed by the system.</string>
+
+    <string name="ongoing_notification_title">Show Ongoing Notification</string>
+    <string name="ongoing_notification_desc">Keep a persistent notification in the status bar to increase background priority and prevent being killed.</string>
+
+    <string name="toast_overlay_error">Unable to open overlay settings</string>
+    <string name="toast_accessibility_error">Unable to open accessibility settings</string>
+    <string name="toast_battery_error">Unable to open battery optimization settings</string>
+
+    <!-- Actions -->
+    <string name="action_recents">Recent Apps (GLOBAL_ACTION_RECENTS)</string>
+    <string name="action_back">Back (GLOBAL_ACTION_BACK)</string>
+    <string name="action_home">Home (GLOBAL_ACTION_HOME)</string>
+    <string name="action_notifications">Notifications (GLOBAL_ACTION_NOTIFICATIONS)</string>
+    <string name="action_quick_settings">Quick Settings (GLOBAL_ACTION_QUICK_SETTINGS)</string>
+    <string name="action_power_dialog">Power Menu (GLOBAL_ACTION_POWER_DIALOG)</string>
+    <string name="action_toggle_split_screen">Toggle Split Screen (GLOBAL_ACTION_TOGGLE_SPLIT_SCREEN)</string>
+    <string name="action_take_screenshot">Take Screenshot (GLOBAL_ACTION_TAKE_SCREENSHOT)</string>
+    <string name="action_lock_screen">Lock Screen (GLOBAL_ACTION_LOCK_SCREEN)</string>
+    <string name="action_dismiss_notification_shade">Dismiss Notifications (GLOBAL_ACTION_DISMISS_NOTIFICATION_SHADE)</string>
+    <string name="action_none">None</string>
 </resources>
