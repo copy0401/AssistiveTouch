@@ -1,44 +1,50 @@
 name: Android CI
 
+
 on:
-  push:
-    branches: [ "master" ] # 當你推送到 main 或 master 分支時自動觸發
-  pull_request:
-    branches: [ "master" ]
+  workflow_dispatch: # Allows manual clicks on the GitHub webpage to trigger.
+
 
 jobs:
   build:
 
+
     runs-on: ubuntu-latest
 
+
     steps:
-    - uses: actions/checkout@v4 # 檢查程式碼
-    - name: set up JDK 17 # 設定 JDK 17
+    - uses: actions/checkout@v4 # Check code
+    - name: set up JDK 17 # Set up JDK 17
       uses: actions/setup-java@v4
       with:
         java-version: '17'
         distribution: 'temurin'
         cache: gradle
 
+
     - name: Grant execute permission for gradlew
       run: chmod +x gradlew
       
-    - name: Build with Gradle # 使用 Gradle 編譯 Debug APK
+    - name: Build with Gradle # Compile and debug APK using Gradle
       run: ./gradlew assembleDebug
       
     - name: Rename APK
       run: mv app/build/outputs/apk/debug/app-debug.apk app/build/outputs/apk/debug/AssistiveTouch.apk
 
-    - name: Upload APK file to GitHub Artifacts # 上傳 APK 檔案至 GitHub Artifacts
-      uses: actions/upload-artifact@v4
-      with:
-        name: AssistiveTouch-apk
-        path: app/build/outputs/apk/debug/AssistiveTouch.apk
+    - name: Automatic version generation tag
+      id: tag
+      run: |
+        echo "tag_name=v$(date +'%Y.%m.%d-%H%M%S')" >> $GITHUB_OUTPUT
         
     - name: Upload APK to GitHub Release
       uses: softprops/action-gh-release@v2
       with:
+        tag_name: ${{ steps.tag.outputs.tag_name }}
+        name: "AssistiveTouch Auto Release"
         files: app/build/outputs/apk/debug/AssistiveTouch.apk
       env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-  
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} 
+
+
+
+        
