@@ -1,4 +1,9 @@
+
 # AssistiveTouch 懸浮球
+
+
+![til](./imgs/mirror.gif)
+
 
 ## Features
 ### 單擊/雙擊/長按 可分別設定
